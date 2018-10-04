@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
+	  <!--xmlns:th="http://www.thymeleaf.org">-->
+<head>
+	<title>Login Page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+	<style>
+		.maindiv {
+			margin: auto;
+			margin-top: 50px;
+			margin-bottom: 100px;
+			margin-right: 150px;
+			margin-left: 80px;
+
+		}
+	</style>
+	<script type="text/javascript">
+
+//        https://getbootstrap.com/docs/4.0/components/alerts/
+
+		function show() {
+            document.getElementById('loginerror').style.display='block';
+//			if(document.getElementById('loginerror').style.display=='none') {
+//				document.getElementById('loginerror').style.display='block';
+//			}
+		}
+
+		function close() {
+            document.getElementById('loginerror').style.display='none';
+//			if(document.getElementById('loginerror').style.display=='block') {
+//				document.getElementById('loginerror').style.display='none';
+//			}
+		}
+
+
+		function onLoadFunction() {
+
+            var url = window.location.href;
+			var login_error = 'login_error';
+
+			if (url.indexOf(login_error) !== -1) {
+				show();
+			} else {
+				close();
+			}
+
+
+		};
+
+		function signUp() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("POST", "http://localhost:8080/signup", false);
+			xhttp.setRequestHeader("Content-type", "application/json");
+			xhttp.send();
+			var response = JSON.parse(xhttp.responseText);
+		}
+
+		function submitForm(actionName) {
+			document.dataform.action = actionName;
+            document.getElementById("dataform").submit();
+		}
+
+	</script>
+
+</head>
+
+
+
+<body onload='document.dataform.username.focus(); onLoadFunction()'>
+
+	<div class="maindiv">
+		<h3>Login with Username and Password</h3>
+
+		<div width="100px" id="loginerror" class="alert alert-danger" role="alert">
+			Invalid username or password!
+		</div>
+
+		<form name='dataform' id="dataform" action='/doLogin' method='POST' class="form-horizontal">
+			<div>
+				<label class="control-label">Username: <input type='text' name='username'></label>
+			</div>
+			<div>
+				<label class="control-label">Password: <input type='password' name='password'></label>
+			</div>
+			<div>
+				<input type="submit" class="btn btn-outline-primary" value="Sign In">
+
+				<a class="btn btn-link" onClick="submitForm('/signup');" href="#"  role="button">Sign Up</a>
+
+			</div>
+		</form>
+	</div>
+</body>
+</html>

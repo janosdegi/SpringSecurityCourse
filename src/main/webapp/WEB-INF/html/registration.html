@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <style>
+        .maindiv {
+            margin: auto;
+            margin-top: 50px;
+            margin-bottom: 100px;
+            margin-right: 150px;
+            margin-left: 80px;
+
+        }
+    </style>
+    <script type="text/javascript">
+
+        function onLoadFunction() {
+
+        };
+
+        function submitForm(actionName) {
+            document.dataform.action = actionName;
+        }
+
+    </script>
+</head>
+<body onload='document.dataform.username.focus(); onLoadFunction()'>
+
+<div class="maindiv">
+    <h3>Registration</h3>
+
+    <form name='dataform' id="dataform" action='/user/registration' method='POST' class="form-horizontal">
+        <div>
+            <label class="control-label">Email: <input type='text' id="username" name='username'></label>
+        </div>
+        <div>
+            <label class="control-label">Password: <input type='password' id="password" name='password'></label>
+        </div>
+        <div>
+            <label class="control-label">Confirm Password: <input type='password' id="confirmpassword" name='confirmpassword'></label>
+        </div>
+        <div>
+            <input type="submit" class="btn btn-outline-primary" value="Sign Up">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
+
